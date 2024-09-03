@@ -19,7 +19,8 @@ List::List()
 List::~List()
 {
     Node *current = head;
-    while (current != NULL){
+    while (current != NULL)
+    {
         Node *next = current->next;
         delete current;
         current = next;
