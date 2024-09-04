@@ -4,7 +4,29 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
-void stl_sort(List &l, bool numeric) {
+using namespace std;
+
+void stl_sort(List &l, bool numeric)
+{
+    Node *current = l.head;
+    vector<int> sorted;
+
+    while (current != NULL)
+    {
+        sorted.push_back(current->number);
+        current = current->next;
+    }
+    sort(sorted.begin(), sorted.end());
+
+    current = l.head;
+
+    int i = 0;
+    while (current != NULL)
+    {
+        current->number = sorted[i];
+        current = current->next;
+        i++;
+    }
 }
-
