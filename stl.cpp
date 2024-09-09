@@ -22,8 +22,8 @@ void stl_sort(List &l, bool numeric)
             current = current->next;
         }
         sort(sorted.begin(), sorted.end());
-        current = l.head;
 
+        current = l.head;
         int i = 0;
         while (current != NULL)
         {
@@ -40,12 +40,12 @@ void stl_sort(List &l, bool numeric)
             current = current->next;
         }
         sort(stringSorted.begin(), stringSorted.end());
-        current = l.head;
 
+        current = l.head;
         int i = 0;
         while (current != NULL)
         {
-            current->string = sorted[i];
+            current->string = stringSorted[i];
             current = current->next;
             i++;
         }

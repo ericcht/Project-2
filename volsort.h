@@ -24,7 +24,16 @@ struct List
   {
     Node *newNode = new Node();
     newNode->string = s;
-    newNode->number = stoi(s);
+
+    // Error checking stoi - https://cplusplus.com/forum/beginner/253696/
+    try
+    {
+      newNode->number = std::stoi(s);
+    }
+    catch (const std::exception &e)
+    {
+      newNode->number = 0;
+    }
     newNode->next = head;
     head = newNode;
     size++;
