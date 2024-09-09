@@ -22,15 +22,25 @@ Node *msort(Node *head, bool numeric)
 
 void split(Node *head, Node *&left, Node *&right)
 {
-    left = head;
-    right = head;
+    if (head == NULL || head->next == NULL)
+    {
+        left = head;
+        right = NULL;
+        return;
+    }
+
+    Node *slow = head;
+    Node *fast = head;
 
     // slow fast pointer technique
-    while (right != NULL && right->next != NULL)
+    while (fast != NULL && fast->next != NULL)
     {
-        left = left->next;
-        right = right->next->next;
+        slow = slow->next;
+        fast = fast->next->next;
     }
+    left = head;
+    right = slow->next;
+    slow->next = NULL;
 }
 
 Node *merge(Node *left, Node *right, bool numeric)
@@ -40,16 +50,33 @@ Node *merge(Node *left, Node *right, bool numeric)
 
     while (left != NULL && right != NULL)
     {
-        if (left->number < right->number)
-        { // left is less
-            tail->next = left;
-            left = left->next;
+        if (numeric)
+        {
+            if (left->number < right->number)
+            { // left is less
+                tail->next = left;
+                left = left->next;
+            }
+            else
+            {
+                // right is less
+                tail->next = right;
+                right = right->next;
+            }
         }
         else
         {
-            // right is less
-            tail->next = right;
-            right = right->next;
+            if (left->string < right->string)
+            { // left is less
+                tail->next = left;
+                left = left->next;
+            }
+            else
+            {
+                // right is less
+                tail->next = right;
+                right = right->next;
+            }
         }
         tail = tail->next;
     }
