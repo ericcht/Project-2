@@ -14,10 +14,22 @@ Node *merge(Node *left, Node *right, bool numeric);
 
 void merge_sort(List &l, bool numeric)
 {
+    l.head = msort(l.head, numeric); // call sort on head of list
 }
 
 Node *msort(Node *head, bool numeric)
 {
+    if (head == NULL || head->next == NULL){ // return head if no elements or one element
+        return head;
+    }
+    Node *left = NULL;
+    Node *right = NULL;
+    split(head, left, right); // split list
+
+    left = msort(left, numeric); // recursive call to sort split lists
+    right = msort(right, numeric);
+
+    return merge(left, right, numeric); // merge halves and return them
 }
 
 void split(Node *head, Node *&left, Node *&right)
