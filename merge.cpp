@@ -42,18 +42,19 @@ void split(Node *head, Node *&left, Node *&right)
     }
 
     Node *slow = head;
-    Node *fast = head;
+    Node *fast = head->next;  // Start `fast` at `head->next` so slow lands at the middle
 
-    // slow fast pointer technique
     while (fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
     }
+
     left = head;
     right = slow->next;
-    slow->next = NULL;
+    slow->next = NULL;  // This terminates the left half of the list
 }
+
 
 Node *merge(Node *left, Node *right, bool numeric)
 {
