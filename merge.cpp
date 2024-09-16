@@ -52,7 +52,7 @@ void split(Node *head, Node *&left, Node *&right)
 
     left = head;
     right = slow->next;
-    slow->next = NULL;  // This terminates the left half of the list
+    slow->next = NULL;  // This terminates the left half of the list.
 }
 
 
