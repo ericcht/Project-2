@@ -19,7 +19,8 @@ void merge_sort(List &l, bool numeric)
 
 Node *msort(Node *head, bool numeric)
 {
-    if (head == NULL || head->next == NULL){ // return head if no elements or one element
+    if (head == NULL || head->next == NULL)
+    { // return head if no elements or one element
         return head;
     }
     Node *left = NULL;
@@ -42,17 +43,17 @@ void split(Node *head, Node *&left, Node *&right)
     }
 
     Node *slow = head;
-    Node *fast = head;
+    Node *fast = head->next; // Start `fast` at `head->next` so slow lands at the middle
 
-    // slow fast pointer technique
     while (fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
     }
+
     left = head;
     right = slow->next;
-    slow->next = NULL;
+    slow->next = NULL; // This terminates the left half of the list
 }
 
 Node *merge(Node *left, Node *right, bool numeric)
