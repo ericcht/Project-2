@@ -42,14 +42,8 @@ struct List
 
 // Functions -------------------------------------------------------------------
 
-bool node_number_compare(const Node *a, const Node *b)
-{
-  return a->number < b->number;
-}
-bool node_string_compare(const Node *a, const Node *b)
-{
-  return a->string < b->string;
-}
+bool node_number_compare(const Node *a, const Node *b);
+bool node_string_compare(const Node *a, const Node *b);
 
 void dump_node(Node *n); // implement in this file (volsort.h) to make it easier for TAs to grade
 

@@ -14,7 +14,7 @@ void stl_sort(List &l, bool numeric)
 
     // Traverse the list and collect all nodes into the vector
     Node *current = l.head;
-    while (current != nullptr)
+    while (current != NULL)
     {
         nodes.push_back(current);
         current = current->next;
@@ -33,11 +33,11 @@ void stl_sort(List &l, bool numeric)
     l.head = nodes[0]; // Set the head to the first node in the sorted vector
     current = l.head;
 
-    for (size_t i = 1; i < nodes.size(); ++i)
+    for (size_t i = 1; i < nodes.size(); i++)
     {
         current->next = nodes[i];
         current = current->next;
     }
 
-    current->next = nullptr; // End the list
+    current->next = NULL;
 }
