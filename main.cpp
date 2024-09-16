@@ -93,9 +93,9 @@ int main(int argc, char *argv[])
     case MODE_STL:
         stl_sort(data, numeric);
         break;
-    /*case MODE_QSORT:
+    case MODE_QSORT:
         qsort_sort(data, numeric);
-        break;*/
+        break;
     case MODE_MERGE:
         merge_sort(data, numeric);
         break;
