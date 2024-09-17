@@ -51,30 +51,6 @@ void qsort_sort(List &l, bool numeric)
 	else
 	{
 		qsort(nodes.data(), nodes.size(), sizeof(Node *), node_string_compare);
-<<<<<<< HEAD
-=======
-	}
-
-	// rebuild w/ sorted vector
-
-	if (nodes.empty())
-		l.head = nullptr;
-	else
-		l.head = nodes[0];
-
-	current = l.head;
-
-	for (size_t i = 1; i < nodes.size(); i++)
-	{
-		current->next = nodes[i];
-		current = current->next;
-	}
-
-	// last->null
-	if (current != nullptr)
-	{
-		current->next = nullptr;
->>>>>>> 077e91708b3bf4859487ef4ce4c1ea01325908a0
 	}
 
 	// rebuild w/ sorted vector

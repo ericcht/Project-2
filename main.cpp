@@ -87,24 +87,6 @@ int main(int argc, char *argv[])
     {
         data.push_front(line);
     }
-<<<<<<< HEAD
-    
-    switch (mode) {
-        case MODE_STL:
-            stl_sort(data, numeric);
-            break;
-        case MODE_QSORT:
-            qsort_sort(data, numeric);
-            break;
-        case MODE_MERGE:
-            merge_sort(data, numeric);
-            break;
-        case MODE_QUICK:
-            quick_sort(data, numeric);
-            break;
-    }
-
-=======
 
     switch (mode)
     {
@@ -121,7 +103,6 @@ int main(int argc, char *argv[])
         quick_sort(data, numeric);
         break;
     }
->>>>>>> 077e91708b3bf4859487ef4ce4c1ea01325908a0
 
     for (Node *curr = data.head; curr != NULL; curr = curr->next)
     {
