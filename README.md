@@ -45,8 +45,10 @@ Quick - Usually has O(nlogn) but can be O(n^2) in worst case, which happened for
 # Which is best
 Qsort, seemed to consistently outperform or match all other methods besidesone instance of STL (most likely a fluke) regardless of size
 
+# Contributions
+Eric worked on a portion of merge.cpp and completed stl.cpp. Ethan completed qsort.cpp. Alex finished remaining portion of merge.cpp and completed the 3 questions relating to performance. William did quick.cpp and recorded all the times for each sorting method.
 ## GITHUB link 
-[link](https://github.com/ericcht/Project-2)
+[Project-2 Link](https://github.com/ericcht/Project-2)
 
 # Contributers
 
