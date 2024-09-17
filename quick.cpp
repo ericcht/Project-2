@@ -17,39 +17,37 @@ void quick_sort(List &l, bool numeric) {
 }
 
 Node *qsort(Node *head, bool numeric) {
-    // Base case
+    
+    //Base case
     if(!head || !head->next) {
         return head;
     }
 
-    // choose pivot and create left and right lists
-    Node *pivot = head; // Head choosen for simplicity
+    //pviot chosen for simplicity
+    Node *pivot = head;
     Node *left  = nullptr;
     Node *right = nullptr;
 
-    // divide list around the pivot
-    partition(head, pivot, left, right, numeric);
+    partition(head->next, pivot, left, right, numeric);
 
-    // recursivly call on left and right
+    pivot->next = nullptr;
+
     left  = qsort(left , numeric);
     right = qsort(right, numeric);
 
-    pivot->next = right;
-    
-    // return sorted list
-    return concatenate(left,pivot);
+    return concatenate(left, concatenate(pivot, right));
 
 }
 
 void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric) {
+
     while(head) {
-        // separate lists
+
         Node *next = head->next;
         head->next = nullptr;
 
-        bool compare = numeric ? (head->number < pivot->number) : (head->string < pivot->string);
+        bool compare = numeric ? node_number_compare(head, pivot) : node_string_compare(head,pivot);
 
-        // sort into either the left or right
         if(compare) {
             head->next = left;
             left = head;
@@ -60,16 +58,17 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric)
 
         head = next;
     }
+    
 }
 
 Node *concatenate(Node *left, Node *right) {
 
-    // In case left is empty
     if(!left) {
         return right;
     }
 
     Node *temp = left;
+
     while(temp->next) {
         temp = temp->next;
     }
