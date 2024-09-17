@@ -19,7 +19,8 @@ void merge_sort(List &l, bool numeric)
 
 Node *msort(Node *head, bool numeric)
 {
-    if (head == NULL || head->next == NULL){ // return head if no elements or one element
+    if (head == NULL || head->next == NULL)
+    { // return head if no elements or one element
         return head;
     }
     Node *left = NULL;
@@ -42,7 +43,11 @@ void split(Node *head, Node *&left, Node *&right)
     }
 
     Node *slow = head;
+<<<<<<< HEAD
     Node *fast = head->next;  // start `fast` at `head->next` so slow lands at the middle
+=======
+    Node *fast = head->next; // Start `fast` at `head->next` so slow lands at the middle
+>>>>>>> 077e91708b3bf4859487ef4ce4c1ea01325908a0
 
     while (fast != NULL && fast->next != NULL)
     {
@@ -52,7 +57,11 @@ void split(Node *head, Node *&left, Node *&right)
 
     left = head;
     right = slow->next;
+<<<<<<< HEAD
     slow->next = NULL;  // this terminates the left half of the list.
+=======
+    slow->next = NULL; // This terminates the left half of the list
+>>>>>>> 077e91708b3bf4859487ef4ce4c1ea01325908a0
 }
 
 
@@ -103,9 +112,14 @@ Node *merge(Node *left, Node *right, bool numeric)
     {
         tail->next = right;
     }
+<<<<<<< HEAD
 
     Node *result = dummy->next; // save the actual result head
     delete dummy;               // delete dummy node
     return result;              // ret the merged list
 }
 
+=======
+    return dummy->next; // return head node
+}
+>>>>>>> 077e91708b3bf4859487ef4ce4c1ea01325908a0
