@@ -1,72 +1,76 @@
 // qsort.cpp
 
 #include "volsort.h"
-
-#include <cstdlib> // for qsort
-#include <cstring> // for strcmp
-#include <iostream>
+#include <cstdlib>   // qsort
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
-// Comparison function for numeric sorting
-int compare_numeric(const void *a, const void *b)
+// numeric compare fxn
+
+int node_number_compare(const void *a, const void *b)
 {
-	int num1 = *(int *)a;
-	int num2 = *(int *)b;
-	return (num1 - num2);
+	const Node *node1 = *(const Node **)a;
+	const Node *node2 = *(const Node **)b;
+
+	if (node1->number < node2->number)
+		return -1;
+	if (node1->number > node2->number)
+		return 1;
+	return 0;
 }
 
-// Comparison function for string sorting
-int compare_string(const void *a, const void *b)
+// string compare fxn
+
+int node_string_compare(const void *a, const void *b)
 {
-	string *str1 = (string *)a;
-	string *str2 = (string *)b;
-	return strcmp(str1->c_str(), str2->c_str());
+	const Node *node1 = *(const Node **)a;
+	const Node *node2 = *(const Node **)b;
+
+	return node1->string.compare(node2->string);
 }
 
 void qsort_sort(List &l, bool numeric)
 {
-	Node *current = l.head;
-	vector<int> sorted;
-	vector<string> stringSorted;
+	vector<Node *> nodes;
 
+	// traverse and store nodes in vector
+	Node *current = l.head;
+	while (current != NULL)
+	{
+		nodes.push_back(current);
+		current = current->next;
+	}
+
+	// qsort call
 	if (numeric)
 	{
-		while (current != NULL)
-		{
-			sorted.push_back(current->number);
-			current = current->next;
-		}
-		// Use qsort for numeric sorting
-		qsort(&sorted[0], sorted.size(), sizeof(int), compare_numeric);
-
-		current = l.head;
-		int i = 0;
-		while (current != NULL)
-		{
-			current->number = sorted[i];
-			current = current->next;
-			i++;
-		}
+		qsort(nodes.data(), nodes.size(), sizeof(Node *), node_number_compare);
 	}
 	else
 	{
-		while (current != NULL)
-		{
-			stringSorted.push_back(current->string);
-			current = current->next;
-		}
-		// Use qsort for string sorting
-		qsort(&stringSorted[0], stringSorted.size(), sizeof(string), compare_string);
+		qsort(nodes.data(), nodes.size(), sizeof(Node *), node_string_compare);
+	}
 
-		current = l.head;
-		int i = 0;
-		while (current != NULL)
-		{
-			current->string = stringSorted[i];
-			current = current->next;
-			i++;
-		}
+	// rebuild w/ sorted vector
+
+	if (nodes.empty())
+		l.head = nullptr;
+	else
+		l.head = nodes[0];
+
+	current = l.head;
+
+	for (size_t i = 1; i < nodes.size(); i++)
+	{
+		current->next = nodes[i];
+		current = current->next;
+	}
+
+	// last->null
+	if (current != nullptr)
+	{
+		current->next = nullptr;
 	}
 }

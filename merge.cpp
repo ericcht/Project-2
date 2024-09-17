@@ -42,7 +42,7 @@ void split(Node *head, Node *&left, Node *&right)
     }
 
     Node *slow = head;
-    Node *fast = head->next;  // Start `fast` at `head->next` so slow lands at the middle
+    Node *fast = head->next;  // start `fast` at `head->next` so slow lands at the middle
 
     while (fast != NULL && fast->next != NULL)
     {
@@ -52,7 +52,7 @@ void split(Node *head, Node *&left, Node *&right)
 
     left = head;
     right = slow->next;
-    slow->next = NULL;  // This terminates the left half of the list.
+    slow->next = NULL;  // this terminates the left half of the list.
 }
 
 
@@ -93,7 +93,9 @@ Node *merge(Node *left, Node *right, bool numeric)
         }
         tail = tail->next;
     }
-    if (left != NULL) // if there is a remaining list just attach it
+    
+    // attach the remaining nodes if any
+    if (left != NULL)
     {
         tail->next = left;
     }
@@ -101,5 +103,9 @@ Node *merge(Node *left, Node *right, bool numeric)
     {
         tail->next = right;
     }
-    return dummy->next; // return head node
+
+    Node *result = dummy->next; // save the actual result head
+    delete dummy;               // delete dummy node
+    return result;              // ret the merged list
 }
+
