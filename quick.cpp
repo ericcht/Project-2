@@ -28,13 +28,16 @@ Node *qsort(Node *head, bool numeric) {
     Node *left  = nullptr;
     Node *right = nullptr;
 
+    // partition
     partition(head->next, pivot, left, right, numeric);
 
     pivot->next = nullptr;
 
+    // recursive call
     left  = qsort(left , numeric);
     right = qsort(right, numeric);
 
+    // combine left and right
     return concatenate(left, concatenate(pivot, right));
 
 }
@@ -43,11 +46,14 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric)
 
     while(head) {
 
+        // separate
         Node *next = head->next;
         head->next = nullptr;
 
+        // compare based on pivot
         bool compare = numeric ? node_number_compare(head, pivot) : node_string_compare(head,pivot);
 
+        // assign to proper list then move to next
         if(compare) {
             head->next = left;
             left = head;
@@ -63,16 +69,19 @@ void partition(Node *head, Node *pivot, Node *&left, Node *&right, bool numeric)
 
 Node *concatenate(Node *left, Node *right) {
 
+    // if left is empty return right
     if(!left) {
         return right;
     }
 
+    // find end of left
     Node *temp = left;
 
     while(temp->next) {
         temp = temp->next;
     }
 
+    // have right most of left point to leftmost of right
     temp->next = right;
     return left;
 
