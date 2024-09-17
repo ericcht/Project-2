@@ -33,13 +33,17 @@ QUICK | 10000000 | 897.34s
 
 
 # Performance
-
+STL sort shows good performance with little time up to around 100k size, but then slows down. For very large inputs it
+is relatively slow compared to some other methods. Like STL sort, Qsort performs well with small inputs, but as size increases it still slightly outperforms STL in terms of the time it takes for large inputs such as 1 million. Merge sort maintains consistent performance but then lags when it hits the 10 million mark, but is comparable
+in time to Qsort. While Quick Sort performs well for small sizes, it is incredibly slow for large input sizes, taking minutes at the 10 million element mark.
 
 # Theoretical Complexity 
-
-
+STL - O(nlogn), maintains good performance eve with large inputs
+Qsort - O(nlogn), results show that it maintains efficiency across sizes, similar to STL but has an edge when it comes to large inputs
+Merge - O(nlogn), maintains good performance across input sizes and can handle large sets without risk of poor performance seen in Quick Sort's worst case
+Quick - Usually has O(nlogn) but can be O(n^2) in worst case, which happened for the larger inputs, making it super slow
 # Which is best
-
+Qsort, seemed to consistently outperform or match all other methods besidesone instance of STL (most likely a fluke) regardless of size
 
 ## GITHUB link 
 [link](https://github.com/ericcht/Project-2)
